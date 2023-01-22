@@ -10,8 +10,7 @@ const AppProvider = ({children})=>{
     const [search,searchup] = useState('')
     const[showmo,showmoup] = useState(false)
     const [selectedMeal, setSelectedMeal] = useState(null)
-    const [fav,favup] = useState([]);
-    const selectMeal = (idMeal, favoriteMeal) => {
+    const selectMeal = (idMeal) => {
         let meal;
         
         meal = meals.find((meal) => meal.idMeal === idMeal);
@@ -20,6 +19,17 @@ const AppProvider = ({children})=>{
         showmoup(true)
         
     }
+    const getfavouritesfromlocal = ()=>{
+        let fav = localStorage.getItem('fav');
+        if (fav){
+            fav = JSON.parse(localStorage.getItem('fav'))
+        }
+        else{
+            fav = []
+        }
+        return fav
+    }
+    const [fav,favup] = useState(getfavouritesfromlocal());
     const favorite = (idMeal)=>{
         console.log(idMeal)
         const already = fav.find(meal=>meal.idMeal===idMeal)
@@ -28,11 +38,13 @@ const AppProvider = ({children})=>{
         const choosenOne = meals.find(meal=>meal.idMeal===idMeal)
         const updated = [...fav,choosenOne]
         favup(updated) 
+        localStorage.setItem('fav',JSON.stringify(updated))
         //console.log(fav)
     }
     const remove=(idMeal)=>{
         const removed = fav.filter(meal=>meal.idMeal!==idMeal)
         favup(removed)
+        localStorage.setItem('fav',JSON.stringify(removed))
     }
     //console.log(fav)
     const closeModal=()=>{

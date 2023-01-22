@@ -1,7 +1,6 @@
 import { useGlobalContext } from "../Context"
 import {BsHandThumbsUp , BsHandThumbsUpFill} from 'react-icons/bs'
 import { useState } from "react"
-import Favourite from "./Favourite"
 const Meals =()=>{
     const {meals} = useGlobalContext()
     const {loading}= useGlobalContext()

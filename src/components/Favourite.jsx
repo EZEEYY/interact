@@ -14,7 +14,7 @@ function Favourite(){
         <h2>Favourite</h2>
         <fav>
         
-        {fav.map((meal ,idMeal)=>{
+        {fav.map((meal)=>{
             return(
                 <div className="mine">
 
