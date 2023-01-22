@@ -11,7 +11,7 @@ function Favourite(){
     return(
         <div className="favourite">
         
-        <h2>Favourite</h2>
+        <h2 style={{color:'white'}}>Favourite</h2>
         <fav>
         
         {fav.map((meal)=>{
