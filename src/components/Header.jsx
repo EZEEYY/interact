@@ -4,6 +4,7 @@ import { useGlobalContext } from "../Context";
 function Header(){
     const[text,textup] = React.useState('')
     const {searchup} = useGlobalContext()
+    const {randommeal} =useGlobalContext()
     function change(event){
         textup(event.target.value)
     }
@@ -12,7 +13,7 @@ function Header(){
             searchup(text)
         }
 
-        console.log(text)
+       // console.log(text)
     }
     
     return(
@@ -20,7 +21,7 @@ function Header(){
             <div className="head">
                 <input onChange={change} value={text} />
                 <button onClick={clicked}>Search</button>
-                <button >Suprise Me!</button>
+                <button onClick={randommeal}>Suprise Me!</button>
             </div> 
         </div>
         

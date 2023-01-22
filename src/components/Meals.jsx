@@ -1,9 +1,13 @@
 import { useGlobalContext } from "../Context"
 import {BsHandThumbsUp , BsHandThumbsUpFill} from 'react-icons/bs'
 import { useState } from "react"
+import Favourite from "./Favourite"
 const Meals =()=>{
     const {meals} = useGlobalContext()
     const {loading}= useGlobalContext()
+    const {selectMeal} = useGlobalContext()
+    const {selected} = useGlobalContext()
+    const {favorite} = useGlobalContext()
    // const {rand} = useGlobalContext()
     console.log(meals)
     const [btn,btnup] = useState(<BsHandThumbsUp/>)
@@ -25,13 +29,13 @@ const Meals =()=>{
         <div>
                 <div className="foods">
                 {meals.map((meal)=>{
+                    const {idMeal,strMeal:title,strMealThumb:image}=meal
                     return(
-                        //randum===true?<div>{rand}</div>:
-                        <div className="meals">
-                        <img src={meal.strMealThumb} style={{width:'300px'}} className='img'></img>
+                        <div className="meals" key={idMeal} onClick={()=>selectMeal(idMeal)} >
+                        <img src={image} style={{width:'300px'}} className='img'  ></img>
                         <footer className="foot">
-                            <p> {meal.strMeal}</p>
-                            <button className="btn" onClick={update} >{btn}</button>
+                            <p> {title}</p>
+                            <button className="btn" onClick={()=>favorite(idMeal)}>{btn}</button>
                         </footer>
                     </div>)
                 })}
